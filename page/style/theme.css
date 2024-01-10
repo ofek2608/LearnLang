@@ -1,0 +1,11 @@
+.theme-light {
+  --theme-background: #FFF;
+  --theme-text-1: #000;
+  /* Many more */
+}
+
+.theme-dark {
+  --theme-background: #1b1d32;
+  --theme-text-0: #FFF;
+  /* Many more */
+}

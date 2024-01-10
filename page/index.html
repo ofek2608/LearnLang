@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+  <link rel="stylesheet" href="style/main.css">
+  <script type="module" src="js/main.js" onload="this.remove()"></script>
+
+  <meta name="google-signin-client_id" content="337900408578-7jupms466mm5oc3nvap5ldo1sd4qec2i.apps.googleusercontent.com">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <img src="http://localhost/img/test"/>
+  <div id="g_id_onload"
+    data-client_id="337900408578-7jupms466mm5oc3nvap5ldo1sd4qec2i.apps.googleusercontent.com"
+    data-callback="onSignIn">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
+  <script>
+    function onSignIn(googleUser) {
+      ServerConnection.setLogin({googleToken:googleUser.credential});
+    }
+  </script>
+</body>
+</html>

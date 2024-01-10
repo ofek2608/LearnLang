@@ -1,3 +1,7 @@
+//
+// This file is responsible of sending api requests to the server
+// 
+
 let loginKey = null;
 
 export async function setLogin(data) {

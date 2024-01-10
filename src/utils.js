@@ -1,3 +1,7 @@
+//
+// This file contain utilities which may be used in multiple files.
+//
+
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 

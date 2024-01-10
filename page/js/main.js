@@ -1,3 +1,7 @@
+//
+// This file is loaded first, and importing all important modules
+//
+
 import './server-connection.js';
 import {setPreferredTheme} from './theme.js';
 

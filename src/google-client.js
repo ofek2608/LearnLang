@@ -1,3 +1,8 @@
+//
+// This file is responsible for validating google token
+// which are sent from the client when they signup or signin.
+//
+
 import fs from 'fs';
 import { root } from './utils.js';
 import { OAuth2Client } from 'google-auth-library';

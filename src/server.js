@@ -1,4 +1,10 @@
-// const express = import('express');
+//
+// This file will open a server on http://localhost:80
+// It will send files in `page`
+// It will send images in `data/photos`
+// It will accept POST messages and redirect them to `api.executeApiRequest`
+//
+
 import express from 'express';
 import { root } from './utils.js';
 import { executeApiRequest } from './api.js';
@@ -8,9 +14,6 @@ const port = 80;
 
 //TODO change to use raw so more is possible, and error handling is also good.
 app.use(express.json());
-// app.use(helmet({
-//   referrerPolicy: { policy: 'same-origin-allow-popups' }
-// }))
 // app.use(express.raw({type: '*/*'}));
 
 function sendFile(file) {

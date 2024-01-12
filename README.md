@@ -10,8 +10,8 @@ The server is an http(s) server. The client can call `GET` to get the content of
 ## Error codes
 | error code | meaning                   |
 |------------|---------------------------|
-| -1         | Internal server error     |
+| -1         | Unknown internal error    |
 | [100,199]  | Action required           |
 | [200,299]  | Missing or incorrect data |
 
-Check [./src/errors.js](./src/errors.js)
+Check [./src/errors.js](./src/errors.js) for the full list

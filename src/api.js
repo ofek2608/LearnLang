@@ -1,7 +1,7 @@
 //
 // This file is responsible for answering client requests
 // Client request are passed to `executeApiRequest`
-// The return value is always a json, if it contains `err` key, then there is an error.
+// The return value is always a json, if it contains `errCode` key, then there is an error.
 //
 
 import { verifyGoogleToken } from './google-client.js';

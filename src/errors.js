@@ -3,7 +3,7 @@
 // Error codes:
 //  [-1] - unknown internal error
 //  [100,199] - action required
-//  [200,299] - missing/incorrect data
+//  [200,299] - missing or incorrect data
 
 export const UNKNOWN_INTERNAL_ERROR = { errCode:  -1, err: 'unknown internal error' };
 export const LOGIN_EXPIRED          = { errCode: 100, err: 'login expired' };

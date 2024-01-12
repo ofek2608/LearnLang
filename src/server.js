@@ -8,6 +8,7 @@
 import express from 'express';
 import { root } from './utils.js';
 import { executeApiRequest } from './api.js';
+import { UNKNOWN_INTERNAL_ERROR } from './errors.js';
 
 const app = express();
 const port = 80;
@@ -55,25 +56,15 @@ app.post('/', async (req, res) => {
     'Cross-Origin-Opener-Policy': 'same-origin-allow-popups'
   });
   let body = req.body;
-  if (!body) {
-    res.status(400).send({err:'missing body'});
-    return;
-  }
   let result;
+  console.log('body',  body);
   try {
-    console.log('body',  body);
-    result = executeApiRequest(body);
-    if (result instanceof Promise) {
-      result = await result;
-    }
-    console.log('result', result);
-  } catch (err) {
-    console.error(err);
-    result = {err: 'internal error'};
+    result = await executeApiRequest(body);
+  } catch (e) {
+    console.error(e);
+    result = UNKNOWN_INTERNAL_ERROR;
   }
-  if (result.err) {
-    res.status(400);
-  }
+  console.log('result', result);
   res.send(result);
 });
 

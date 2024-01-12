@@ -6,25 +6,37 @@
 
 import { verifyGoogleToken } from './google-client.js';
 import crypto from 'crypto';
+import * as ERR from './errors.js';
 
-export function executeApiRequest(request) {
+export async function executeApiRequest(request) {
+  if (!request) {
+    return ERR.MISSING_BODY;
+  }
   const { func, data, loginKey } = request;
 
-  let user;
-  if (loginKey) {
-    user = checkLogin(loginKey);
-    if (!user) {
-      return {err:'invalid login'};
-    }
-  } else {
-    user = null;
-  }
-
+  // func
   if (typeof(func) !== 'string') {
-    return {err:'missing func (string)'};
+    return ERR.MISSING_FUNC;
+  }
+  let executableFunc = API_FUNCTIONS[func.toLocaleLowerCase()];
+  if (!executableFunc) {
+    return ERR.INVALID_FUNC;
   }
 
-  return POST_FUNCS[func](data, user);
+  // user
+  let user;
+  if (executableFunc.length >= 2) {
+    // If the function has 2 paramerters: data,user (shouldn't be > 2)
+    if (!loginKey) {
+      return ERR.MISSING_LOGIN_KEY;
+    }
+    user = checkLogin(loginKey);
+    if (typeof(user) !== 'string') {
+      return ERR.LOGIN_EXPIRED;
+    }
+  }
+
+  return await executableFunc(data, user);
 }
 
 let loginByUser = {};
@@ -49,37 +61,34 @@ function createLoginKey(userId) {
   return loginKey;
 }
 
-const POST_FUNCS = {
+const API_FUNCTIONS = {
   login: async (data) => {
     let {googleToken} = data;
     let verified = await verifyGoogleToken(googleToken);
     if (!verified) {
-      return {err:'couldn\'t verify token'};
+      return ERR.INVALID_TOKEN;
     }
     let googleUserId = verified.sub;
     let userId = getUserIdByGoogle(googleUserId);
     let loginKey = createLoginKey(userId);
     return {loginKey}
   },
-  get_profile: (data) => {
+  get_profile: async (data) => {
     let {id} = data;
     if (typeof(data) !== 'string') {
-      return {err:'missing data.id (string)'};
+      return ERR.MISSING_PROFILE_ID;
     }
     return getProfile(id);
   },
-  get_settings: (_, user) => {
-    if (typeof(user) !== 'string') {
-      return {err:'missing login data'};
-    }
+  get_settings: async (_, user) => {
     return getSettings(user);
   },
-  get_lesson: (data) => {
+  get_resource: async (data) => {
     let {id} = data;
     if (typeof(data) !== 'string') {
-      return {err:'missing data.id (string)'};
+      return ERR.MISSING_RESOURCE_ID;
     }
-    return getLesson(id);
+    return getResource(id);
   }
 };
 
@@ -96,7 +105,7 @@ function getSettings(userId) {
   };
 }
 
-function getLesson(lessonId) {
+function getResource(resourceId) {
   return {
 
   };

@@ -1,11 +1,20 @@
 .theme-light {
   --theme-background: #FFF;
+  --theme-background-2: #c6c7d8;
   --theme-text-1: #000;
   /* Many more */
 }
 
 .theme-dark {
   --theme-background: #1b1d32;
-  --theme-text-0: #FFF;
+  --theme-background-2: #3b3e63;
+  --theme-text-0: #cdd5dd;
+  --theme-text-white: #cdd5dd;
+  --theme-text-red: #fc4626;
+  --theme-text-yellow: #bfb415;
+  --theme-text-green: #47bd19;
+  --theme-text-cyan: #26dde0;
+  --theme-text-blue: #4c49e6;
+  --theme-text-pink: #c4259a;
   /* Many more */
 }

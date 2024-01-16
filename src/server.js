@@ -85,6 +85,10 @@ app.get('/img/:id', async (req, res) => {
 //MUST BE LAST ROUTE
 app.get('*', sendFile('redirect.html'));
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+global.close = ()=>{
+  server.close();
+};

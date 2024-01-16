@@ -11,7 +11,6 @@ import {markdownToHtml} from './markdown.js'
 //TEST, can be removed
 import('./server-connection.js').then(ServerConnection => {
   window.ServerConnection = ServerConnection;
-  ServerConnection.setLogin({a:'hello'});
 });
 
 let testTextArea = document.createElement('textarea');

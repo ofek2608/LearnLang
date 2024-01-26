@@ -1,0 +1,57 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background-color: var(--theme-background);
+  color: var(--theme-text-0);
+  margin-bottom: 10em;
+}
+
+/* TODO remove styles for <a> after removing the usage of <a> */
+a * {
+  text-decoration: underline;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.hoverable * {
+  text-decoration: underline dotted;
+  /* cursor: pointer; */
+}
+
+.hover-bubble {
+  background-color: var(--theme-background-2);
+  margin: 1em -11em 0;
+  border-radius: 1em;
+  padding: 1em;
+  width: 20em;
+  position: absolute;
+  opacity: 0;
+  transform: translate(0, -0.5em);
+  transition: opacity ease 0.1s, transform ease 0.1s;
+  left: 50%;
+  top: 100%;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hover-bubble-shown {
+  opacity: 1;
+  transform: none;
+}
+
+.hover-bubble::before {
+  display: block;
+  position: absolute;
+  top: -0.5em;
+  left: 10.5em;
+  right: 10.5em;
+  transform: rotate(45deg);
+  height: 1em;
+  background-color: inherit;
+  content: '';
+}

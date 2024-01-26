@@ -1,0 +1,16 @@
+{
+  "name": "learn-lang",
+  "version": "1.0.0",
+  "description": "This project aims to help people learn languages for free. By letting users submit learning resources which will be promoted using a karma system.\r - Check [Implementation](./docs/implementation.md) for implementation details.\r - Check [Plan](./docs/plan.md) for plan details.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "api": "cd api && npm run test",
+    "website": "cd website && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

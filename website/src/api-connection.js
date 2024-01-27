@@ -7,6 +7,9 @@ let loginData = null;
 let sessionToken = null;
 
 async function rawApiCall(func, data) {
+  if (typeof data !== "object") {
+    data = {};
+  }
   let request = { func, data, sessionToken };
   let response = await fetch(URL, {
     method: "POST",

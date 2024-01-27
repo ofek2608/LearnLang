@@ -1,3 +1,9 @@
+//
+// This file manages a secret password "session token"
+// Users can send it to verify themself,
+// without giving the entire login data.
+//
+
 import crypto from "crypto";
 
 let u2s = {};
@@ -26,4 +32,9 @@ export function invalidateSessionToken(userId) {
   delete u2s[userId];
   delete s2u[sessionToken];
   return true;
+}
+
+export function invalidateAllSessionTokens() {
+  u2s = {};
+  s2u = {};
 }

@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 
 const filePath = fileURLToPath(import.meta.url);
-const srcDir = dirname(filePath);
+export const srcDir = dirname(filePath);
 const rootDir = dirname(srcDir);
 export const dataDir = join(rootDir, "data");
 
@@ -28,21 +28,44 @@ export async function sha1(message) {
 export async function importFolder(folder) {
   let files = await fs.promises.readdir(join(srcDir, folder));
   let result = {};
-  let promises = files.map(
-    async (file) => {
-      if (!file.endsWith('.js')) {
-        return;
-      }
-      let importName = file.substring(0, file.length - 3);
-      let importedModule = await import(`./${folder}/${file}`);
-      if (!importedModule.default) {
-        console.warn(`Warning: ${importName} in ${folder} does not have a default export.`);
-        return;
-      }
-      result[importName] = importedModule.default;
+  let promises = files.map(async (file) => {
+    if (!file.endsWith(".js")) {
+      return;
     }
-  );
+    let importName = file.substring(0, file.length - 3);
+    let importedModule = await import(`./${folder}/${file}`);
+    if (!importedModule.default) {
+      console.warn(
+        `Warning: ${importName} in ${folder} does not have a default export.`
+      );
+      return;
+    }
+    result[importName] = importedModule.default;
+  });
   await Promise.all(promises);
-  console.log(`Imported from folder ${folder} the entries`, Object.keys(result))
+  console.log(
+    `Imported from folder ${folder} the modules`,
+    Object.keys(result)
+  );
   return result;
+}
+
+export function parseCSV(lines) {
+  lines = lines.replaceAll("\r", "");
+  lines = lines.split(/\s*\n\s*/g);
+  lines = lines.map((line) => line.split(/\s*,\s*/g));
+  let names = lines.shift();
+  lines = lines.filter((line) => line.length >= names.length);
+
+  function parseLine(line) {
+    let result = {};
+    for (let i = 0; i < names.length; i++) {
+      result[names[i]] = line[i];
+    }
+    return result;
+  }
+
+  lines = lines.map(parseLine);
+  lines = lines.filter((a) => a);
+  return lines;
 }

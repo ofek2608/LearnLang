@@ -53,5 +53,5 @@ a:link {
   transform: rotate(45deg);
   height: 1em;
   background-color: inherit;
-  content: '';
+  content: "";
 }

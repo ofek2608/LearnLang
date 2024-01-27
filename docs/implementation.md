@@ -13,9 +13,9 @@ Execute in the root directory with `npm api`.
 ## API request
 The client sends the api an http(s) request and the api respond. Both the request and the response consist of a json body.<br>
 The request is sent with `POST` to `/`, and it needs to be of the form `{func,data,sessionToken}`.<br>
-- **func (string):** The requested function, check [src/api-function/](./api/src/api-function/) for the full list.
+- **func (string):** The requested function, check [src/api-function/](../api/src/api-function/) for the full list.
 - **data (dynamic):** Most functions will use this as parameters to the function.
-- **sessionToken (string):** For function that require being logged in, a sessionToken is needed. You can obtain a session token using the [login function](./api/src/api-function/login.js).
+- **sessionToken (string):** For function that require being logged in, a sessionToken is needed. You can obtain a session token using the [login function](../api/src/api-function/login.js).
 
 ## Error codes
 | error code | meaning                   |
@@ -24,4 +24,4 @@ The request is sent with `POST` to `/`, and it needs to be of the form `{func,da
 | [100,199]  | Action required           |
 | [200,299]  | Missing or incorrect data |
 
-Check [./api/src/errors.js](./api/src/errors.js) for the full list.
+Check [/api/src/errors.csv](../api/src/errors.csv) for the full list.

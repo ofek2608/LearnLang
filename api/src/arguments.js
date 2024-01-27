@@ -1,3 +1,7 @@
+//
+// This file reads the commandline arguments
+// 
+
 // Setup
 const args = { "": [] };
 let currentKey = "";
@@ -13,5 +17,6 @@ for (let arg of process.argv) {
 }
 
 //Exports
+export default args; // for dynamic arguments
 export const isTestMode = !!args.test;
 export const serverPort = parseInt((args.port ?? [])[0] ?? "3001");

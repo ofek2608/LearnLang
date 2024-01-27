@@ -1,4 +1,4 @@
-// 
+//
 // Author: OfekN
 // Description:
 //  This script is responsible on changing the website style between dark and light theme.
@@ -7,10 +7,10 @@
 import "./theme.css";
 
 export function setPreferredTheme(newPreferredTheme) {
-  if (newPreferredTheme === 'dark') {
+  if (newPreferredTheme === "dark") {
     hasPreferredTheme = true;
     setDark(true);
-  } else if (newPreferredTheme === 'light') {
+  } else if (newPreferredTheme === "light") {
     hasPreferredTheme = true;
     setDark(false);
   } else if (hasPreferredTheme) {
@@ -25,13 +25,12 @@ function setDark(value) {
   }
   dark = value;
   if (dark) {
-    document.body.classList.remove('theme-light');
-    document.body.classList.add('theme-dark');
+    document.body.classList.remove("theme-light");
+    document.body.classList.add("theme-dark");
   } else {
-    document.body.classList.remove('theme-dark');
-    document.body.classList.add('theme-light');
+    document.body.classList.remove("theme-dark");
+    document.body.classList.add("theme-light");
   }
-
 }
 
 function updateByMedia() {
@@ -43,6 +42,6 @@ function updateByMedia() {
 
 let hasPreferredTheme = false;
 let dark = false;
-let darkThemeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+let darkThemeMedia = window.matchMedia("(prefers-color-scheme: dark)");
 darkThemeMedia.onchange = updateByMedia;
 updateByMedia();

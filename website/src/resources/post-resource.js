@@ -4,7 +4,7 @@ export default function PostResource({ resourceData }) {
     <div>
       <h2>By {author}</h2>
       <p>{content}</p>
-      {comments.map((comment,i) => (
+      {comments.map((comment, i) => (
         <p key={i}>{comment}</p>
       ))}
     </div>

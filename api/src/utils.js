@@ -11,6 +11,7 @@ export const srcDir = dirname(filePath);
 const rootDir = dirname(srcDir);
 export const dataDir = join(rootDir, "data");
 
+//TODO change to a better hashing method
 export async function sha1(message) {
   const encoder = new TextEncoder();
   const data = encoder.encode(message);
@@ -25,8 +26,22 @@ export async function sha1(message) {
   return hashHex;
 }
 
-export async function importFolder(folder) {
-  let files = await fs.promises.readdir(join(srcDir, folder));
+export function memorize(func) {
+  let results = {};
+  return (arg) => {
+    let result = results[arg];
+    if (result) {
+      return result;
+    }
+    result = func(arg);
+    results[arg] = result;
+    return result;
+  };
+}
+
+async function importFolder0(folder) {
+  let folderPath = join(srcDir, folder);
+  let files = await fs.promises.readdir(folderPath);
   let result = {};
   let promises = files.map(async (file) => {
     if (!file.endsWith(".js")) {
@@ -43,12 +58,10 @@ export async function importFolder(folder) {
     result[importName] = importedModule.default;
   });
   await Promise.all(promises);
-  console.log(
-    `Imported from folder ${folder} the modules`,
-    Object.keys(result)
-  );
+  console.log(`Imported from ${folder} the modules\n`, Object.keys(result));
   return result;
 }
+export const importFolder = memorize(importFolder0);
 
 export function parseCSV(lines) {
   lines = lines.replaceAll("\r", "");

@@ -4,20 +4,20 @@
 
 import ERR from "../errors.js";
 
-function get({ resourceId, args }) {
+function getResource({ resourceId, resource, args }) {
   return ERR.unknownInternal;
 }
 
-function create({ resourceId, data, userId }) {
+function createResource({ resourceId, resource, data, userId }) {
   return ERR.unknownInternal;
 }
 
-function edit({ resourceId, data, userId }) {
+function editResource({ resourceId, resource, data, userId }) {
   return ERR.unknownInternal;
 }
 
-function del({ resouceId, userId }) {
+function deleteResource({ resourceId, resource, userId }) {
   return ERR.unknownInternal;
 }
 
-export default { get, create, edit, del };
+export default { getResource, createResource, editResource, deleteResource };

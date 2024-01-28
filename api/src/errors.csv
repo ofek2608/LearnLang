@@ -12,4 +12,6 @@ missingAuthData, 206, missing auth data
 invalidAuthData, 207, invalid auth data
 missingSessionToken, 208, missing sessiontoken
 missingProfileId, 209, missing profile id
-missingResourceId, 210, missing resource id
+invalidProfileId, 210, invalid profile id
+missingResourceId, 211, missing resource id
+invalidResourceId, 212, invalid resource id

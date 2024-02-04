@@ -21,3 +21,16 @@ export async function readResource(resourceId) {
     return {};
   }
 }
+
+export async function writeResource(resourceId, json) {
+  if (!validateResouceId(resourceId)) {
+    return;
+  }
+  let str = JSON.stringify(json);
+  let path = join(dataDir, "resources", resourceId);
+  try {
+    await fs.writeFile(path, str);
+  } catch (e) {
+    return;
+  }
+}

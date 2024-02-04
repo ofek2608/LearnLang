@@ -4,7 +4,7 @@
 
 import ERR from "../errors.js";
 
-function getResource({ resourceId, resource, args }) {
+function getResource({ resourceId, resource }) {
   return ERR.unknownInternal;
 }
 

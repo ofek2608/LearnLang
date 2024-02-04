@@ -15,3 +15,4 @@ missingProfileId, 209, missing profile id
 invalidProfileId, 210, invalid profile id
 missingResourceId, 211, missing resource id
 invalidResourceId, 212, invalid resource id
+unspecifiedClientError, 299, unspecified client error

@@ -1,9 +1,12 @@
+body {
+  --title-bar-height: calc(min(10dvw, 10vh));
+}
+
 .title-bar {
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  --title-bar-height: calc(min(10dvw, 10vh));
   height: var(--title-bar-height);
   z-index: 100;
 }
@@ -22,8 +25,15 @@
 
 /* menu */
 .title-bar > div > div:nth-child(1) {
-  background-image: url(../images/ui/hamburger.svg);
   width: var(--title-bar-height);
+}
+
+.title-bar > div > .hamburger:nth-child(1) {
+  background-image: url(../images/ui/hamburger.svg);
+}
+
+.title-bar > div > .close:nth-child(1) {
+  background-image: url(../images/ui/x.svg);
 }
 
 /* search (TODO) */
@@ -48,7 +58,7 @@
   transition-duration: 0.5s;
 }
 
-.desktop .title-bar-hide:not(:hover) > div {
+/* .desktop .title-bar-hide:not(:hover) > div {
   top: -100%;
   bottom: 100%;
-}
+} */

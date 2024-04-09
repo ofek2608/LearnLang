@@ -1,0 +1,46 @@
+.navigation {
+  position: fixed;
+  left: 0;
+  top: var(--title-bar-height);
+  bottom: 0;
+  background-color: green;
+  padding: calc(var(--nav-scale) * 0.15);
+  z-index: 99;
+}
+
+.navigation > div {
+  line-height: calc(var(--nav-scale) * 0.75);
+  font-size: calc(var(--nav-scale) * 0.6);
+  margin: calc(var(--nav-scale) * 0.1);
+  padding: calc(var(--nav-scale) * 0.05);
+  border-radius: calc(var(--nav-scale) * 0.3);
+  background-color: darkgreen;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.desktop .navigation {
+  --nav-scale: calc(var(--title-bar-height) * 0.75);
+  transition-property: left;
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
+  width: calc(var(--nav-scale) * 4);
+}
+
+.desktop .navigation-hide {
+  left: calc(var(--nav-scale) * -4.3);
+}
+
+.mobile .navigation {
+  --nav-scale: var(--title-bar-height);
+  right: 0;
+  transition-property: top, bottom;
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
+}
+
+.mobile .navigation-hide {
+  top: calc(var(--title-bar-height) - 100dvh);
+  bottom: 100dvh;
+}

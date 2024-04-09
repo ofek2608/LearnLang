@@ -1,12 +1,14 @@
-import PostResource from "./pages/resource-page";
-import LoginPage from "./pages/login-page";
-import MarkdownDisplay from "./components/markdown-display";
+import PostResource from "../pages/resource-page.js";
+import LoginPage from "../pages/login-page.js";
+import MarkdownDisplay from "./markdown-display.js";
 import { useEffect, useState } from "react";
-import "./title-bar/title-bar.css";
-import { isTouchScreenDevice } from "./env-utils.js";
+import { isTouchScreenDevice } from "../env-utils.js";
+import TitleBar from "./title-bar.js";
+import Navigation from "./navigation.js";
 
 export default function App() {
   let [hideTitleBar, setHideTitleBar] = useState(true);
+  let [hideNavigation, setHideNavigation] = useState(true);
   const [mobile, setMobile] = useState(isMobile());
   const handleWindowSizeChange = () => setMobile(isMobile());
 
@@ -17,17 +19,26 @@ export default function App() {
       }
   }, []);
 
+  console.log(isTouchScreenDevice());
+
+  const appCtx = {
+    hideTitleBar, setHideTitleBar,
+    hideNavigation, setHideNavigation,
+  };
+
   if (isTouchScreenDevice()) {
     return (
       <div className="mobile">
-        <TitleBar hideTitleBar={false}/>
+        <TitleBar appCtx={appCtx}/>
+        <Navigation appCtx={appCtx}/>
         <div className="home-page"></div>
       </div>
     );
   }
   return (
     <div className="desktop">
-      <TitleBar hideTitleBar={hideTitleBar} />
+    <TitleBar appCtx={appCtx}/>
+    <Navigation appCtx={appCtx}/>
       <PostResource
         resourceData={{
           type: "post",
@@ -49,18 +60,6 @@ function isMobile() {
 
 function MainView() {
   return <div></div>;
-}
-
-function TitleBar({ hideTitleBar }) {
-  return (
-    <div className={"title-bar" + (hideTitleBar ? " title-bar-hide" : "")}>
-      <div>
-        <div/>
-        <div/>
-        <div/>
-      </div>
-    </div>
-  );
 }
 
 function TestMarkdown() {

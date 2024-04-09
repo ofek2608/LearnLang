@@ -1,7 +1,7 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./theme";
-import App from "./app";
+import App from "./components/app";
 import { BrowserRouter } from "react-router-dom";
 import * as ApiConnection from "./api-connection";
 import { GoogleOAuthProvider } from "@react-oauth/google";

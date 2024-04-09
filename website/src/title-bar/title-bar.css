@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 10vh;
+  --title-bar-height: calc(min(10dvw, 10vh));
+  height: var(--title-bar-height);
   z-index: 100;
 }
 
@@ -11,14 +12,43 @@
   position: absolute;
   inset: 0;
 
-  transition-property: top, bottom;
-  transition-timing-function: ease;
-  transition-duration: 0.5s;
-
   background-color: red;
 }
 
-.title-bar-hide:not(:hover) > div {
+.title-bar > div > div {
+  float: left;
+  height: 100%;
+}
+
+/* menu */
+.title-bar > div > div:nth-child(1) {
+  background-image: url(../images/ui/hamburger.svg);
+  width: var(--title-bar-height);
+}
+
+/* search (TODO) */
+.title-bar > div > div:nth-child(2) {
+  width: calc(100% - 2 * var(--title-bar-height));
+}
+
+/* profile picture */
+.title-bar > div > div:nth-child(3) {
+  width: calc(0.8 * var(--title-bar-height));
+  height: calc(0.8 * var(--title-bar-height));
+  margin: calc(0.1 * var(--title-bar-height));
+  background-color: white;
+  background-size: cover;
+  border-radius: 35%;
+}
+
+/* hide title bar on desktop */
+.desktop .title-bar > div {
+  transition-property: top, bottom;
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
+}
+
+.desktop .title-bar-hide:not(:hover) > div {
   top: -100%;
   bottom: 100%;
 }

@@ -13,32 +13,34 @@ export default function App() {
   const handleWindowSizeChange = () => setMobile(isMobile());
 
   useEffect(() => {
-      window.addEventListener('resize', handleWindowSizeChange);
-      return () => {
-          window.removeEventListener('resize', handleWindowSizeChange);
-      }
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
   }, []);
 
   console.log(isTouchScreenDevice());
 
   const appCtx = {
-    hideTitleBar, setHideTitleBar,
-    hideNavigation, setHideNavigation,
+    hideTitleBar,
+    setHideTitleBar,
+    hideNavigation,
+    setHideNavigation,
   };
 
   if (isTouchScreenDevice()) {
     return (
       <div className="mobile">
-        <TitleBar appCtx={appCtx}/>
-        <Navigation appCtx={appCtx}/>
+        <TitleBar appCtx={appCtx} />
+        <Navigation appCtx={appCtx} />
         <div className="home-page"></div>
       </div>
     );
   }
   return (
     <div className="desktop">
-    <TitleBar appCtx={appCtx}/>
-    <Navigation appCtx={appCtx}/>
+      <TitleBar appCtx={appCtx} />
+      <Navigation appCtx={appCtx} />
       <PostResource
         resourceData={{
           type: "post",
